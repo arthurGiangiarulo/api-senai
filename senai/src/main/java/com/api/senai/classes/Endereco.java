@@ -1,17 +1,11 @@
 package com.api.senai.classes;
 
+import jakarta.persistence.*;
 import com.google.gson.Gson;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.Request;
+import lombok.Data;
 
 @Data
 @Entity
