@@ -24,6 +24,14 @@ public class ContaBancaria {
     private double saldo = 0.0;
 
     @OneToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = false)
     private Cliente titular;
+
+    public void depositar(double valor) {
+        saldo += valor;
+    }
+    public void sacar(double valor) {
+        saldo -= valor;
+    }
+
 }

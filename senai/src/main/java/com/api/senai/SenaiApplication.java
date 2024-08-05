@@ -12,3 +12,11 @@ public class SenaiApplication {
 	}
 
 }
+
+// Delete lógico e pesquisa personalizada
+// Servicos de email
+// UpLoad de arquivos
+// DTOs
+// JWT - Autenticação
+// Swagger - Documentação
+// Projeto

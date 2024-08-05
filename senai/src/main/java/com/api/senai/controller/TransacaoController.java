@@ -10,14 +10,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.api.senai.classes.Transacao;
+import com.api.senai.service.ContaBancariaService;
 import com.api.senai.service.TransacaoService;
 
+@RestController
+@RequestMapping("transacoes")
 public class TransacaoController {
 
     @Autowired
     private TransacaoService transacaoService;
+
+    @Autowired
+    private ContaBancariaService contaBancariaService;
 
     @GetMapping
     public ResponseEntity<List<Transacao>> getAll() {
@@ -29,9 +37,24 @@ public class TransacaoController {
         return ResponseEntity.ok(transacaoService.getById(id));
     }
 
+    @GetMapping("/extrato/{id}")
+    public ResponseEntity<List<Transacao>> getExtrato (@PathVariable Long idConta) {
+        List<Transacao> extrato = transacaoService.getExtrato(idConta);
+        
+        if (extrato.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(extrato);
+    }
+
     @PostMapping
     public ResponseEntity<Transacao> create(@RequestBody Transacao transacao) {
-        return ResponseEntity.ok(transacaoService.create(transacao));
+        // Verificar se alguma das contas da transação são nulas
+        if(contaBancariaService.temSaldo(transacao)){
+            return ResponseEntity.ok(transacaoService.create(transacao));
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @PutMapping("/{id}")
