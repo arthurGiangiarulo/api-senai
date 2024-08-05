@@ -10,28 +10,32 @@ import com.api.senai.repository.ContaBancariaRepository;
 public class ContaBancariaService {
 
     @Autowired
-    ContaBancariaRepository contaBancariaRepository;
+    ContaBancariaRepository contaRepository;
+
+    ContaBancariaService(ContaBancariaRepository contaRepository) {
+        this.contaRepository = contaRepository;
+    }
 
     public List<ContaBancaria> getAll() {
-        return contaBancariaRepository.findAll();
+        return contaRepository.findAll();
     }
 
     public ContaBancaria getById(Long id) {
-        return contaBancariaRepository.findById(id).orElse(null);
+        return contaRepository.findById(id).orElse(null);
     }
 
     public ContaBancaria create(ContaBancaria contaBancaria) {
-        return contaBancariaRepository.save(contaBancaria);
+        return contaRepository.save(contaBancaria);
     }
 
     public ContaBancaria update(Long id, ContaBancaria contaBancaria) {
         // contaBancaria.setId(id);
-        return contaBancariaRepository.save(contaBancaria);
+        return contaRepository.save(contaBancaria);
     }
 
     public ContaBancaria delete(Long id) {
         ContaBancaria contaBancaria = getById(id);
-        contaBancariaRepository.delete(contaBancaria);
+ contaRepository.delete(contaBancaria);
         return contaBancaria;
     }
 

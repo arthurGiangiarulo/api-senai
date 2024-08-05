@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.api.senai.classes.Transacao;
+import com.api.senai.repository.TransacaoRepository;
 
 public class TransacaoService {
 
@@ -23,11 +24,12 @@ public class TransacaoService {
         return transacaoRepository.save(transacao);
     }
 
-    public Transacao update(Long id, Transacao transacao) {
+    public Transacao update(Long id, Transacao novaTransacao) {
         Transacao transacao = transacaoRepository.findById(id).orElse(null);
-        if (transacao == null) {
+        if (novaTransacao == null) {
             return null;
         }
+        // Incluir os atributos que deseja atualizar
         return transacaoRepository.save(transacao);
     }
 
