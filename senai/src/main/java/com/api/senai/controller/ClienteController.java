@@ -22,6 +22,13 @@ public class ClienteController {
         List<Cliente> clientes = clienteService.getAll();
         return ResponseEntity.ok(clientes);
     }
+
+    // Buscar todos os clientes ativos
+    @GetMapping("/ativos")
+    public ResponseEntity<List<Cliente>> getAllAtivos() {
+        List<Cliente> clientes = clienteService.getAllAtivos();
+        return ResponseEntity.ok(clientes);
+    }
     
     // Buscar um cliente por id - getById
     @GetMapping("/{id}")
@@ -31,7 +38,6 @@ public class ClienteController {
         if (cliente == null) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(cliente);
     }
 
@@ -45,37 +51,26 @@ public class ClienteController {
     // Atualizar um cliente - update
     // Combinação do getById e create
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> update(@PathVariable Long id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> update(@PathVariable Long id, @RequestBody Cliente clienteNovo) {
         Cliente clienteExistente = clienteService.getById(id);
 
         if (clienteExistente == null) {
             return ResponseEntity.notFound().build();
         }
-
-        clienteExistente.setNome(cliente.getNome());
-        clienteExistente.setCpf(cliente.getCpf());
-        clienteExistente.setEndereco(cliente.getEndereco());
-        clienteExistente.setTelefone(cliente.getTelefone());
-        clienteExistente.setEmail(cliente.getEmail());
-        clienteExistente.setDataNascimento(cliente.getDataNascimento());
-
-        Cliente clienteSalvo = clienteService.create(clienteExistente);
+        Cliente clienteSalvo = clienteService.update(id, clienteExistente, clienteNovo);
 
         return ResponseEntity.ok(clienteSalvo);
     }
 
     // Deletar um cliente - delete
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Cliente> delete(@PathVariable Long id) {
         Cliente cliente = clienteService.getById(id);
 
         if (cliente == null) {
             return ResponseEntity.notFound().build();
         }
-
-        clienteService.delete(id);
-
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(clienteService.delete(id));
     }
     
 }

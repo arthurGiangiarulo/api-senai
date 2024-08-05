@@ -3,39 +3,41 @@ package com.api.senai.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.api.senai.classes.ContaBancaria;
 import com.api.senai.repository.ContaBancariaRepository;
 
+@Service
 public class ContaBancariaService {
 
     @Autowired
-    ContaBancariaRepository contaRepository;
+    ContaBancariaRepository contaBancariaRepository;
 
-    ContaBancariaService(ContaBancariaRepository contaRepository) {
-        this.contaRepository = contaRepository;
+    ContaBancariaService(ContaBancariaRepository contaBancariaRepository) {
+        this.contaBancariaRepository = contaBancariaRepository;
     }
 
     public List<ContaBancaria> getAll() {
-        return contaRepository.findAll();
+        return contaBancariaRepository.findAll();
     }
 
     public ContaBancaria getById(Long id) {
-        return contaRepository.findById(id).orElse(null);
+        return contaBancariaRepository.findById(id).orElse(null);
     }
 
     public ContaBancaria create(ContaBancaria contaBancaria) {
-        return contaRepository.save(contaBancaria);
+        return contaBancariaRepository.save(contaBancaria);
     }
 
     public ContaBancaria update(Long id, ContaBancaria contaBancaria) {
         // contaBancaria.setId(id);
-        return contaRepository.save(contaBancaria);
+        return contaBancariaRepository.save(contaBancaria);
     }
 
     public ContaBancaria delete(Long id) {
         ContaBancaria contaBancaria = getById(id);
- contaRepository.delete(contaBancaria);
+        contaBancariaRepository.delete(contaBancaria);
         return contaBancaria;
     }
 
