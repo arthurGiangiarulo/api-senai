@@ -14,6 +14,9 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     public List<Cliente> getAll() {
         return clienteRepository.findAll();
     }
@@ -24,7 +27,14 @@ public class ClienteService {
     }
 
     public Cliente create(Cliente cliente) {
-        return clienteRepository.save(cliente);
+        // Adicionar tratamentos para garantir que a persistencia 
+        // acontece com todos os dados necessários
+        Cliente clienteSalvo = clienteRepository.save(cliente);
+
+        // Disparar uma mensagem por email de detalhes do cliente
+        emailService.sendEmailByJakartaMail(clienteSalvo);
+
+        return clienteSalvo;
     }
 
     public Cliente update(Long id, Cliente clienteExistente, Cliente clienteNovo) {

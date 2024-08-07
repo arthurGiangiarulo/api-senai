@@ -39,6 +39,12 @@ public class EnderecoController {
         return ResponseEntity.ok(enderecoService.create(endereco));
     }
 
+    @PostMapping("/cep/{cep}")
+    public ResponseEntity<Endereco> createEnderecoByCep(@PathVariable String cep) {
+        // Tipo de resposta quando der erro
+        return ResponseEntity.ok(enderecoService.getEnderecoByCep(cep));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco endereco) {
         return ResponseEntity.ok(enderecoService.update(id, endereco));
