@@ -41,38 +41,39 @@ public class EmailService {
 
     public void sendEmailByJakartaMail(Cliente cliente) {
 
-        final String username = "apifullstacksenai@gmail.com";
-        final String password = "Senh4da@pi";
+        // Inserir o envio de email dentro de um bloco de try/catch
+        // final String username = "apifullstacksenai@gmail.com";
+        // final String password = "Senh4da@pi";
 
-        String from = "apifullstacksenai@gmail.com";
-        String to = "y-al.s@hotmail.com";
-        String subject = "Novo Cliente Cadastrado";
-        String text = "Cliente " + cliente.getNome()
-                + " cadastrado com sucesso!";
+        // String from = "apifullstacksenai@gmail.com";
+        // String to = "y-al.s@hotmail.com";
+        // String subject = "Novo Cliente Cadastrado";
+        // String text = "Cliente " + cliente.getNome()
+        //         + " cadastrado com sucesso!";
 
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
+        // Properties props = new Properties();
+        // props.put("mail.smtp.auth", "true");
+        // props.put("mail.smtp.starttls.enable", "true");
+        // props.put("mail.smtp.host", "smtp.gmail.com");
+        // props.put("mail.smtp.port", "587");
 
-        Session session = Session.getInstance(props, new jakarta.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
+        // Session session = Session.getInstance(props, new jakarta.mail.Authenticator() {
+        //     protected PasswordAuthentication getPasswordAuthentication() {
+        //         return new PasswordAuthentication(username, password);
+        //     }
+        // });
 
-        try {
-            MimeMessage message = new MimeMessage(
-                    session);
-            message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject(subject);
-            message.setText(text);
+        // try {
+        //     MimeMessage message = new MimeMessage(
+        //             session);
+        //     message.setFrom(new InternetAddress(username));
+        //     message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+        //     message.setSubject(subject);
+        //     message.setText(text);
 
-            Transport.send(message);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
+        //     Transport.send(message);
+        // } catch (MessagingException e) {
+        //     throw new RuntimeException(e);
+        // }
     }
 }

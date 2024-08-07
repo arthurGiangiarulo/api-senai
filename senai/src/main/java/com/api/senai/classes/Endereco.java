@@ -20,10 +20,10 @@ public class Endereco {
 
     private String logradouro;
     private String bairro;
-    private String localidade;
+    private String localidade; // cidade/municipio
     private String complemento;
     
     // Transformar em ENUM
-    private String uf;
+    private String uf; // estado
 
 }

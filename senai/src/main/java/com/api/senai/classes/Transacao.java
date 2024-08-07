@@ -2,7 +2,7 @@ package com.api.senai.classes;
 
 import java.time.LocalDateTime;
 
-import com.api.senai.tipo_transacao.TipoTransacao;
+import com.api.senai.enums.TipoTransacao;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

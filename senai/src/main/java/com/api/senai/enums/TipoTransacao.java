@@ -1,4 +1,4 @@
-package com.api.senai.tipo_transacao;
+package com.api.senai.enums;
 
 public enum TipoTransacao {
 

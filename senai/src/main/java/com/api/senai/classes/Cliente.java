@@ -36,4 +36,11 @@ public class Cliente {
     @Column(name = "cliente_ativo")
     private boolean clienteAtivo = true;
 
+    @Column(nullable = false, unique = true)
+    private String login;
+
+    @Column(nullable = false)
+    private String senha;
 }
+
+// DTO = Data Tranfer Object
